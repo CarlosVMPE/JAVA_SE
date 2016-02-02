@@ -1,0 +1,13 @@
+E:\EGCC\Mi_Java>git commit -m "Actulaizando Repositori El Repositorio"
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "1310374@utp.edu.pe"
+  git config --global user.name "CarlosVilchezMalasquez"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident name (for <Alumno@B306-03.(none)>) not allowed
