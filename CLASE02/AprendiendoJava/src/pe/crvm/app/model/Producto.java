@@ -11,6 +11,9 @@ public class Producto {
     private double precio;
     private boolean activo;
 
+    /**
+     * Constructor por Defecto
+     */
     
     public Producto() { //Constructor por defecto porque no tiene parametros
         /*Inicializando Variables*/
@@ -18,8 +21,28 @@ public class Producto {
         this.precio=300.0;
         this.stock =20;
         this.activo=true;
-        System.out.println("Objeto Creado!");
+        System.out.println("Objeto Creado! por Constructor por Defecto");
     }
+    
+    /**
+     * Constructor con Parametros
+     * 
+     * @param nombre Nombre del producto
+     * @param stock Stock del producto
+     * @param precio  Precio del producto
+     * @param activo Estado del producto
+     *                  Si no esta a la venta es false
+     */
+
+    public Producto(String nombre, int stock, double precio, boolean activo) {
+        System.out.println("Objeto Creado! por Constructor por Parametros");
+        this.nombre = nombre;
+        this.stock = stock;
+        this.precio = precio;
+        this.activo = activo;
+        
+    }
+    
     
     /**********Destructor**********/
     @Override
@@ -27,7 +50,6 @@ public class Producto {
         super.finalize(); //To change body of generated methods, choose Tools | Templates.
         System.err.println("Chau Objeto!");
     }
-    
     
     
    
