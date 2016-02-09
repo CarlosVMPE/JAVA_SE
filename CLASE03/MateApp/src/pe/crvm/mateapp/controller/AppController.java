@@ -13,4 +13,8 @@ public class AppController {
         return MyMath.factorial(n);
     }
     
+     public String fibonacci(int n1){
+         return MyMath.fibonacci(n1);
+     }
+    
 }

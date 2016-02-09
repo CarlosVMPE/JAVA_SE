@@ -33,7 +33,20 @@ public final class MyMath {
     * @return retorna un String con los "n" terminos de la serie.
     */
     public static String fibonacci(int n1){
-        return "";
+        //0,1,1,2,3,5,8,13,21,34...
+      
+       
+        int a=0,b=1,c,i;
+        String cad="0 ";
+        for(i=0;i<n1;i++){
+            c=a+b;
+            a=b;
+            b=c;
+            cad=cad+a+"  ";
+            
+        }
+       
+        return cad;
     }
     
     public static boolean primo(int n1) {
