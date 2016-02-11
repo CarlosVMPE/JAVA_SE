@@ -5,6 +5,9 @@
  */
 package pe.crvm.ventaapp.view;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.crvm.ventaapp.controller.VentaController;
 import pe.crvm.ventaapp.dto.ItemDto;
@@ -41,6 +44,7 @@ public class VentaView extends javax.swing.JFrame {
         btnProcesar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblaDatos = new javax.swing.JTable();
+        lblTexto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,63 +82,101 @@ public class VentaView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblaDatos);
 
+        lblTexto.setBackground(new java.awt.Color(0, 51, 255));
+        lblTexto.setForeground(new java.awt.Color(255, 255, 255));
+        lblTexto.setText("jLabel3");
+        lblTexto.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(84, 84, 84)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cboTipo, 0, 116, Short.MAX_VALUE)
-                                    .addComponent(txtTotal)))
-                            .addComponent(btnProcesar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(84, 84, 84)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cboTipo, 0, 116, Short.MAX_VALUE)
+                            .addComponent(txtTotal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnProcesar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                            .addComponent(lblTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(btnProcesar)))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(btnProcesar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
-        //Datos
-        double total = Double.parseDouble(txtTotal.getText());
-        String tipo  = cboTipo.getSelectedItem().toString();
-        // Proceso
-        ItemDto[] data = control.procesar(tipo, total);
-        // Mostrar la tabla
-        DefaultTableModel tabla;
-        tabla = (DefaultTableModel) tblaDatos.getModel();
-        tabla.setRowCount(0);
-        for(ItemDto dto : data){
-            Object[] rowData = {dto.getConcepto(), dto.getValor()};
-            tabla.addRow(rowData);
+        String texto = "";
+        try {
+            // Inicio
+            texto = "Inicio: " + gethora();
+            lblTexto.setText(texto);
+            //Datos
+            double total = Double.parseDouble(txtTotal.getText());
+            String tipo = cboTipo.getSelectedItem().toString();
+            // Verificar Importe
+            if(total <= 0.0){
+                throw new Exception ("Importe debe ser mayor que cero !");
+            }
+            // Proceso
+            ItemDto[] data = control.procesar(tipo, total);
+            // Mostrar la tabla
+            DefaultTableModel tabla;
+            tabla = (DefaultTableModel) tblaDatos.getModel();
+            tabla.setRowCount(0);
+            for (ItemDto dto : data) {
+                Object[] rowData = {dto.getConcepto(), dto.getValor()};
+                tabla.addRow(rowData);
+            }
+            // Limpiar
+            cboTipo.setSelectedItem(null);
+            txtTotal.setText("");
+        } catch (NumberFormatException e) {  // Manejo de Errores si se ingresa texto en vez de numeros
+            JOptionPane.showMessageDialog(rootPane, "El total debe ser Numérico!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (NullPointerException e){   // Para manejar el combo, si no se selecciona nada
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un tipo de documento!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch(Exception e){
+            String msg = "Error en el Proceso !";
+            if(e.getMessage() != null && !e.getMessage().isEmpty()){
+                msg += "\n" + e.getMessage();
+            }
+            
+            JOptionPane.showMessageDialog(rootPane, msg,"ERROR",JOptionPane.ERROR_MESSAGE);
+        }finally{
+            texto += "          Fina: " + gethora();
+            lblTexto.setText(texto);
         }
     }//GEN-LAST:event_btnProcesarActionPerformed
 
@@ -179,6 +221,7 @@ public class VentaView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTexto;
     private javax.swing.JTable tblaDatos;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
@@ -189,5 +232,11 @@ public class VentaView extends javax.swing.JFrame {
             cboTipo.addItem(tipo);
         }
         cboTipo.setSelectedItem(jLabel1);
+    }
+
+    private String gethora() {
+         Date ahora = new Date();
+         SimpleDateFormat formateadro = new SimpleDateFormat("hh:mm:ss");
+         return formateadro.format(ahora);
     }
 }
